@@ -22,6 +22,13 @@
 		9230198C2ADEA07300DCB90D /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230198B2ADEA07300DCB90D /* APIManager.swift */; };
 		9230198F2ADEA08F00DCB90D /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230198E2ADEA08F00DCB90D /* APIServices.swift */; };
 		923019942ADEA15B00DCB90D /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923019932ADEA15B00DCB90D /* Enums.swift */; };
+		923019962ADEBA0500DCB90D /* FoodMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923019952ADEBA0500DCB90D /* FoodMenuTableViewCell.swift */; };
+		923019982ADEBA0E00DCB90D /* FoodMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923019972ADEBA0E00DCB90D /* FoodMenuTableViewCell.xib */; };
+		9230199C2ADEC59F00DCB90D /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230199B2ADEC59F00DCB90D /* CurrentWeatherModel.swift */; };
+		9230199E2ADEC5AD00DCB90D /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230199D2ADEC5AD00DCB90D /* CommonViewModel.swift */; };
+		923019A02ADEC6B100DCB90D /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9230199F2ADEC6B100DCB90D /* ForecastModel.swift */; };
+		923019A22ADEC89800DCB90D /* WeatherApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923019A12ADEC89800DCB90D /* WeatherApiService.swift */; };
+		923019A42ADECC7F00DCB90D /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923019A32ADECC7F00DCB90D /* CurrentLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +68,13 @@
 		9230198B2ADEA07300DCB90D /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		9230198E2ADEA08F00DCB90D /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		923019932ADEA15B00DCB90D /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		923019952ADEBA0500DCB90D /* FoodMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodMenuTableViewCell.swift; sourceTree = "<group>"; };
+		923019972ADEBA0E00DCB90D /* FoodMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FoodMenuTableViewCell.xib; sourceTree = "<group>"; };
+		9230199B2ADEC59F00DCB90D /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
+		9230199D2ADEC5AD00DCB90D /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		9230199F2ADEC6B100DCB90D /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
+		923019A12ADEC89800DCB90D /* WeatherApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApiService.swift; sourceTree = "<group>"; };
+		923019A32ADECC7F00DCB90D /* CurrentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +125,9 @@
 		923019532ADE9ADA00DCB90D /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				9230199A2ADEC58D00DCB90D /* Model */,
+				923019992ADEC58300DCB90D /* ViewModel */,
+				923019622ADE9ADB00DCB90D /* Info.plist */,
 				923019922ADEA14100DCB90D /* CommonClass */,
 				923019912ADEA12400DCB90D /* ViewController */,
 				923019902ADEA0F000DCB90D /* Utility */,
@@ -139,6 +156,8 @@
 		923019862ADE9F3600DCB90D /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				923019972ADEBA0E00DCB90D /* FoodMenuTableViewCell.xib */,
+				923019952ADEBA0500DCB90D /* FoodMenuTableViewCell.swift */,
 				923019872ADE9F5C00DCB90D /* DetailTableViewCell.swift */,
 				923019882ADE9F5C00DCB90D /* DetailTableViewCell.xib */,
 			);
@@ -150,6 +169,7 @@
 			children = (
 				9230198B2ADEA07300DCB90D /* APIManager.swift */,
 				9230198E2ADEA08F00DCB90D /* APIServices.swift */,
+				923019A12ADEC89800DCB90D /* WeatherApiService.swift */,
 			);
 			path = APIHandler;
 			sourceTree = "<group>";
@@ -161,7 +181,7 @@
 				923019542ADE9ADA00DCB90D /* AppDelegate.swift */,
 				9230195F2ADE9ADB00DCB90D /* LaunchScreen.storyboard */,
 				9230195D2ADE9ADB00DCB90D /* Assets.xcassets */,
-				923019622ADE9ADB00DCB90D /* Info.plist */,
+				923019A32ADECC7F00DCB90D /* CurrentLocation.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -183,6 +203,23 @@
 				923019932ADEA15B00DCB90D /* Enums.swift */,
 			);
 			path = CommonClass;
+			sourceTree = "<group>";
+		};
+		923019992ADEC58300DCB90D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9230199D2ADEC5AD00DCB90D /* CommonViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9230199A2ADEC58D00DCB90D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9230199B2ADEC59F00DCB90D /* CurrentWeatherModel.swift */,
+				9230199F2ADEC6B100DCB90D /* ForecastModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +328,7 @@
 			files = (
 				923019612ADE9ADB00DCB90D /* LaunchScreen.storyboard in Resources */,
 				9230195E2ADE9ADB00DCB90D /* Assets.xcassets in Resources */,
+				923019982ADEBA0E00DCB90D /* FoodMenuTableViewCell.xib in Resources */,
 				9230198A2ADE9F5C00DCB90D /* DetailTableViewCell.xib in Resources */,
 				9230195C2ADE9ADA00DCB90D /* Main.storyboard in Resources */,
 			);
@@ -322,8 +360,14 @@
 				923019552ADE9ADA00DCB90D /* AppDelegate.swift in Sources */,
 				923019572ADE9ADA00DCB90D /* SceneDelegate.swift in Sources */,
 				923019892ADE9F5C00DCB90D /* DetailTableViewCell.swift in Sources */,
+				9230199C2ADEC59F00DCB90D /* CurrentWeatherModel.swift in Sources */,
 				9230198F2ADEA08F00DCB90D /* APIServices.swift in Sources */,
+				9230199E2ADEC5AD00DCB90D /* CommonViewModel.swift in Sources */,
 				923019942ADEA15B00DCB90D /* Enums.swift in Sources */,
+				923019A22ADEC89800DCB90D /* WeatherApiService.swift in Sources */,
+				923019A42ADECC7F00DCB90D /* CurrentLocation.swift in Sources */,
+				923019962ADEBA0500DCB90D /* FoodMenuTableViewCell.swift in Sources */,
+				923019A02ADEC6B100DCB90D /* ForecastModel.swift in Sources */,
 				923019852ADE9EAB00DCB90D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,9 @@ class DetailViewController: UIViewController {
     //MARK: IBOutlets
     @IBOutlet weak var detailTableView: UITableView!
     
+    //MARK: Variables
+    var viewModel = CommonViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -20,8 +23,17 @@ class DetailViewController: UIViewController {
     func setup() {
         detailTableView.delegate = self
         detailTableView.dataSource = self
+        let foodMenuTableViewCell = UINib(nibName: "FoodMenuTableViewCell", bundle: nil)
+        detailTableView.register(foodMenuTableViewCell, forCellReuseIdentifier: "FoodMenuTableViewCell")
+        viewModel.fetchWeatherForecast { result in
+            switch result {
+            case .success(let value):
+                print(value)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
-    
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -30,7 +42,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell", for: indexPath) as? DetailTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FoodMenuTableViewCell", for: indexPath) as? DetailTableViewCell
         cell?.setupData()
         return cell ?? UITableViewCell()
     }
