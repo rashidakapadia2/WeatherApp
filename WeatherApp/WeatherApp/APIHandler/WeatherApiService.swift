@@ -20,8 +20,10 @@ func jSONDecoding<T: Decodable>(jSON: Data) -> Result<T,Error>{
 
 class WeatherApiService {
     
+    private static var lang = "en"
+    
     static func currentWeather(weatherQ: String, completion: @escaping(Result<CurrentWeatherModel,CustomErrors>) -> Void) {
-        let params = ["q": weatherQ, "lang": "en"]
+        let params = ["q": weatherQ, "lang": lang]
         APIManager.sharedInstance.performRequest(serviceType: .current(parameters: params)){
             (response) in
             switch response {
@@ -46,8 +48,8 @@ class WeatherApiService {
         }
     }
     
-    static func forecast(weatherQ: String, completion: @escaping(Result<ForecastModel,CustomErrors>) -> Void) {
-        let params: [String:Any] = ["q": weatherQ, "days": 7, "lang": "en"]
+    static func forecast(days: Int = 3, weatherQ: String, completion: @escaping(Result<ForecastModel,CustomErrors>) -> Void) {
+        let params: [String:Any] = ["q": weatherQ, "days": days, "lang": lang]
         APIManager.sharedInstance.performRequest(serviceType: .forecast(parameters: params)){
             (response) in
             switch response {

@@ -54,7 +54,9 @@ enum APIServices {
         var parameters: AnyDict? {
                switch self {
                case .current(parameters: let param), .forecast(let param) :
-                   return param
+                   var finalParams = param
+                   finalParams["key"] = "ba01540f04094b32a5865317231710"
+                   return finalParams
                }
            }
            

@@ -8,6 +8,8 @@
 import Foundation
 
 protocol CurrentWeatherViewModelProtocol {
+    var weatherQ: String? { get set }
+    
     func fetchCurrentWeather(completion: @escaping(Result<CurrentWeatherModel,CustomErrors>) -> Void)
 }
 

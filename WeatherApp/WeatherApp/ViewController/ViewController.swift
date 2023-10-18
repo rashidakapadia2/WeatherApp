@@ -8,34 +8,67 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     //MARK: IBOutlets
     @IBOutlet weak var tempLbl: UILabel!
     @IBOutlet weak var cityLbl: UILabel!
+    @IBOutlet weak var humidityLbl: UILabel!
+    @IBOutlet weak var windPressureLbl: UILabel!
+    
+    @IBOutlet weak var weatherImageView: UIImageView!
     
     //MARK: Variables
-    var viewModel = CommonViewModel()
+    var viewModel: CurrentWeatherViewModelProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        setupServices()
+        addRedirectionGesture()
     }
-
-    func setup() {
-        viewModel.fetchCurrentWeather { result in
+    
+    func setupServices() {
+        viewModel?.fetchCurrentWeather { result in
             switch result {
-            case .success(_):
-                print("Success")
-            case .failure(_):
-                print("Failure")
+            case .success(let value):
+                self.configure(with: value)
+            case .failure(let error):
+                print("Failure: \(error.localizedDescription)")
             }
         }
     }
-
+    
+    private func addRedirectionGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(weatherViewTapped))
+        tapGesture.numberOfTapsRequired = 1
+        weatherImageView.isUserInteractionEnabled = true
+        weatherImageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func weatherViewTapped(_ sender: UITapGestureRecognizer) {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsViewController : DetailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let detailsViewmodel = WeatherDetailViewmodel(weatherQ: viewModel?.weatherQ)
+        detailsViewController.viewModel = detailsViewmodel
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
+    }
+    private func configure(with data: CurrentWeatherModel?) {
+        guard let data = data else { return }
+        DispatchQueue.main.async {
+            
+            self.cityLbl.text = data.location?.country ?? ""
+            self.tempLbl.text = "\(data.current?.tempC ?? 0)"
+            self.humidityLbl.text = "Humidity Level: \(data.current?.humidity ?? 0)"
+            self.windPressureLbl.text = "Wind Pressure: \(data.current?.windMph ?? 0)"
+            self.weatherImageView.downloadImage(url: data.current?.condition?.icon)
+        }
+    }
+    
     @IBAction func viewDetailsBtnTapped(_ sender: Any) {
-        var storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var vc : DetailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        self.present(vc, animated: true, completion: nil)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailsViewController : DetailViewController = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let detailsViewmodel = WeatherDetailViewmodel(weatherQ: viewModel?.weatherQ)
+        detailsViewController.viewModel = detailsViewmodel
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
 }
