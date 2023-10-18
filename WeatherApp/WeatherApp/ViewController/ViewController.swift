@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var humidityLbl: UILabel!
     @IBOutlet weak var windPressureLbl: UILabel!
     
+    @IBOutlet weak var precipitationLbl: UILabel!
+    @IBOutlet weak var airQualityLbl: UILabel!
+    @IBOutlet weak var findBtn: UIButton!
+    @IBOutlet weak var cityTxtView: UITextField!
     @IBOutlet weak var weatherImageView: UIImageView!
     
     //MARK: Variables
@@ -22,6 +26,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         setupServices()
         addRedirectionGesture()
     }
@@ -35,6 +40,16 @@ class ViewController: UIViewController {
                 print("Failure: \(error.localizedDescription)")
             }
         }
+    }
+    
+    @IBAction func findTapped(_ sender: Any) {
+        viewModel?.weatherQ = cityTxtView.text
+        setupServices()
+    }
+    
+    func setupUI() {
+        cityTxtView.delegate = self
+        
     }
     
     private func addRedirectionGesture() {
@@ -59,6 +74,8 @@ class ViewController: UIViewController {
             self.tempLbl.text = "\(data.current?.tempC ?? 0)"
             self.humidityLbl.text = "Humidity Level: \(data.current?.humidity ?? 0)"
             self.windPressureLbl.text = "Wind Pressure: \(data.current?.windMph ?? 0)"
+            self.airQualityLbl.text = "Wind Direction: \(data.current?.windDir ?? "")"
+            self.precipitationLbl.text = "Precipitation: \(data.current?.precipMm ?? 0)"
             self.weatherImageView.downloadImage(url: data.current?.condition?.icon)
         }
     }
@@ -70,6 +87,10 @@ class ViewController: UIViewController {
         detailsViewController.viewModel = detailsViewmodel
         self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
+    
+}
+
+extension ViewController: UITextFieldDelegate {
     
 }
 
